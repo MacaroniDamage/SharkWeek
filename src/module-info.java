@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author makaronijeff
+ *
+ */
+module SharkWeek {
+}
