@@ -1,9 +1,18 @@
 package sharkweek;
 
 public class Calendar { 
+	//Verschiedene Farben
 	public static final String ANSI_RESET = "\u001B[0m";
 	public static final String ANSI_BLACK = "\u001B[30m";
 	public static final String ANSI_RED = "\u001B[31m";
+	public static final String ANSI_GREEN = "\u001B[32m";
+	public static final String ANSI_YELLOW = "\u001B[33m";
+	public static final String ANSI_BLUE = "\u001B[34m";
+	public static final String ANSI_PURPLE = "\u001B[35m";
+	public static final String ANSI_CYAN = "\u001B[36m";
+	public static final String ANSI_WHITE = "\u001B[37m";
+	//Hintergrundfarbe Rot vordergrund Grün
+	public static final String BACKGROUND_GREEN_RED = "\u001B[32;41;1m";
 	   /**********************************************
 	    *  Given the month, day, and year, return which day
 	    *  of the week it falls on according to the Gregorian calendar.
@@ -47,8 +56,8 @@ public class Calendar {
 
 
 	        // print calendar header
-	        System.out.println("   " + months[month] + " " + year);
-	        System.out.println(ANSI_RED + "Su Mo Tu We Th Fr Sa" + ANSI_RESET);
+	        System.out.println(ANSI_BLUE + "   " + months[month] + " " + year + ANSI_RESET);
+	        System.out.println(ANSI_CYAN + "Su Mo Tu We Th Fr Sa" + ANSI_RESET);
 
 	        // starting day
 	        int d = day(month, 1, year);
@@ -57,8 +66,16 @@ public class Calendar {
 	        for (int i = 0; i < d; i++)
 	            System.out.print("   ");
 	        for (int i = 1; i <= days[month]; i++) {
-	            System.out.printf("%2d ", i);
-	            if (((i + d) % 7 == 0) || (i == days[month])) System.out.println();
+	        	// 5. Tag anders faerben
+	        	if (i == 5) {
+	            	System.out.printf(BACKGROUND_GREEN_RED + "%2d " + ANSI_RESET, i);
+	            	if (((i + d) % 7 == 0) || (i == days[month])) System.out.println();
+	        	}
+	        	else {
+	        		System.out.printf(ANSI_GREEN + "%2d " + ANSI_RESET, i);
+	            	if (((i + d) % 7 == 0) || (i == days[month])) System.out.println();
+	        		
+	        	}
 	        }
 	        
 	    }
