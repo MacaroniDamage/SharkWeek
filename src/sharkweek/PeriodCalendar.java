@@ -18,7 +18,9 @@ public class PeriodCalendar {
 	//Hintergrundfarbe Rot vordergrund Grün
 	public static final String BACKGROUND_GREEN_RED = "\u001B[32;41;1m";
 	
-	private static final String MONTH = null;
+	
+	public boolean prognosis = false;
+	public int cycleLength = 30;
 	
 	private ArrayList<Calendar> periodRecords;
 	
@@ -79,6 +81,10 @@ public class PeriodCalendar {
 	        	if (isPeriod(i, month, year)) {
 	            	System.out.printf(BACKGROUND_GREEN_RED + "%2d " + ANSI_RESET, i);
 	            	if (((i + d) % 7 == 0) || (i == days[month])) System.out.println();
+	        	}
+	        	if(prognosis == true)
+	        	{
+	        		if(is)
 	        	}
 	        	else {
 	        		System.out.printf(ANSI_GREEN + "%2d " + ANSI_RESET, i);

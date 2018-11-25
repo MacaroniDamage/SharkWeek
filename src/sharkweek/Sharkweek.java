@@ -29,7 +29,7 @@ public class Sharkweek {
 					{
 						if(args.length == 2) 
 						{
-							System.out.println("Der Kalender mit den Zyklen wird angezeigt!");
+							showPrognosis(30);
 						}
 						else if(args.length == 3) 
 						{
@@ -38,6 +38,7 @@ public class Sharkweek {
 							//Gibt den gespeicherten Zyklus aus
 							System.out.println("Ein neuer Zyklus wurde definiert!");
 							System.out.println("Intervall: " + zyklus);
+							showPrognosis(zyklus);
 						}
 					}
 				}
@@ -84,6 +85,17 @@ public class Sharkweek {
 		ArrayList<Calendar> dates = file.datesAsCalendar();
 		
 		PeriodCalendar period = new PeriodCalendar(dates);
+		
+		period.printCalendar();
+	}
+	
+	private static void showPrognosis(int cycleLength) {
+		ReadDates file = new ReadDates();
+		ArrayList<Calendar> dates = file.datesAsCalendar();
+		
+		PeriodCalendar period = new PeriodCalendar(dates);
+		period.cycleLength = cycleLength;
+		period.prognosis = true;
 		
 		period.printCalendar();
 	}
