@@ -1,10 +1,10 @@
 package sharkweek;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Iterator;
+import java.util.Calendar;
 
-public class Calendar { 
+public class PeriodCalendar { 
 	//Verschiedene Farben
 	public static final String ANSI_RESET = "\u001B[0m";
 	public static final String ANSI_BLACK = "\u001B[30m";
@@ -17,6 +17,8 @@ public class Calendar {
 	public static final String ANSI_WHITE = "\u001B[37m";
 	//Hintergrundfarbe Rot vordergrund Grün
 	public static final String BACKGROUND_GREEN_RED = "\u001B[32;41;1m";
+	
+	private static final String MONTH = null;
 	
 	private ArrayList<Calendar> periodRecords;
 	
@@ -41,7 +43,7 @@ public class Calendar {
 	        return false;
 	    }
 
-	    public static void printCalendar(
+	    public void printMonth(
 	    	int month,
 	    	int year ) {
 	        // months[i] = name of month i
@@ -74,7 +76,7 @@ public class Calendar {
 	            System.out.print("   ");
 	        for (int i = 1; i <= days[month]; i++) {
 	        	// 5. Tag anders faerben
-	        	if (i == 5) {
+	        	if (isPeriod(i, month, year)) {
 	            	System.out.printf(BACKGROUND_GREEN_RED + "%2d " + ANSI_RESET, i);
 	            	if (((i + d) % 7 == 0) || (i == days[month])) System.out.println();
 	        	}
@@ -87,14 +89,41 @@ public class Calendar {
 	        
 	    }
 	    
-	    public Calendar(ArrayList<Calendar> periodRecords) {
+	    public void printCalendar() {
+	    	Calendar newDate = Calendar.getInstance();
+	    	
+	    	for(int i = -12; i <= 0; i++)
+	    	{
+	    		newDate = Calendar.getInstance();
+	    		newDate.add(Calendar.MONTH,  i);
+	    		printMonth(newDate.get(Calendar.MONTH) + 1, newDate.get(Calendar.YEAR));
+	    	}
+	    }
+	    
+	    public PeriodCalendar(ArrayList<Calendar> periodRecords) {
 	    	this.periodRecords = periodRecords;
 	    }
 	    
 	    private boolean isPeriod(int day, int month, int year) {
 	    	
-	    	Iterator itr = periodRecords.iterator();
+	    	boolean exists = false;
+	    	Iterator<Calendar> itr = periodRecords.iterator();
+	    	int periodYear = 0; 
+	    	int periodMonth = 0; 
+	    	int periodDay = 0; 
 	    	
+	    	while(itr.hasNext()) {
+	    		Calendar c = itr.next();
+	    		periodYear = c.get(Calendar.YEAR);
+	    		periodMonth = c.get(Calendar.MONTH) + 1 ;
+	    		periodDay = c.get(Calendar.DAY_OF_MONTH);
+	    		
+	    		if(periodYear == year && periodMonth == month && periodDay == day) {
+	    			exists = true;
+	    		}
+	    	}
+	    	
+	    	return exists; 
 	    	 
 	    }
 	    // print whole year

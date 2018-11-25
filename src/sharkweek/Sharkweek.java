@@ -3,6 +3,7 @@ package sharkweek;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Sharkweek {
@@ -20,8 +21,7 @@ public class Sharkweek {
 				System.out.println(args.length);
 				if(args.length == 1)
 				{
-					System.out.println("Der Kalender wird angezeigt");
-					System.out.println(args.length);
+					show();
 				}
 				else if(args.length > 2)
 				{	
@@ -81,8 +81,10 @@ public class Sharkweek {
 	
 	private static void show() {
 		ReadDates file = new ReadDates();
-		ArrayList<String> Dates = file.fileContent();
+		ArrayList<Calendar> dates = file.datesAsCalendar();
 		
+		PeriodCalendar period = new PeriodCalendar(dates);
 		
+		period.printCalendar();
 	}
 }
