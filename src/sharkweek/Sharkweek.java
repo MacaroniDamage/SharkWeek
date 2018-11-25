@@ -1,8 +1,13 @@
 package sharkweek;
 
-public class Sharkweek {
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+public class Sharkweek {
+	public static final String FILE_LOCATION = "periodData.csv";
 	public static void main(String[] args) {
+		
 		int zyklus = 0;
 		
 		if(args.length > 0) {
@@ -33,12 +38,40 @@ public class Sharkweek {
 					}
 				}
 			}//END OF ARGUMENT: SHOW
-			if(args[1].equals("setperiod"))
+			if(args[0].equals("setperiod"))
 			{
+				if(args.length == 3) {
+					Date firstDate = parseDate(args[1]);
+					Date secondDate = parseDate(args[2]);
+					
+					new SaveDates(firstDate, secondDate);
+				}
+				else if(args.length == 2) {
+					Date firstDate = parseDate(args[1]);
+					new SaveDates(firstDate);		
+				}
+				else {
+					System.out.println("");
+				}
 				
 			}
 		}//END OF ARGUMENTS
 		
 	}
 
+	private static Date parseDate(String dateString) {
+		  	Date date = null;
+		  	String pattern = "dd-MM-yyyy";
+		    SimpleDateFormat format = new SimpleDateFormat(pattern);
+		    try {
+		      date = format.parse(dateString);
+		      System.out.println(date);
+		    } catch (ParseException e) {
+		      System.out.println("Entspricht nicht dem Format");
+		      
+		    }
+		    // formatting
+		    System.out.println(format.format(date));
+		    return date;
+	  }
 }
