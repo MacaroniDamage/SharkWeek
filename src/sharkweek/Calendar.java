@@ -1,5 +1,9 @@
 package sharkweek;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Iterator;
+
 public class Calendar { 
 	//Verschiedene Farben
 	public static final String ANSI_RESET = "\u001B[0m";
@@ -13,6 +17,9 @@ public class Calendar {
 	public static final String ANSI_WHITE = "\u001B[37m";
 	//Hintergrundfarbe Rot vordergrund Grün
 	public static final String BACKGROUND_GREEN_RED = "\u001B[32;41;1m";
+	
+	private ArrayList<Calendar> periodRecords;
+	
 	   /**********************************************
 	    *  Given the month, day, and year, return which day
 	    *  of the week it falls on according to the Gregorian calendar.
@@ -79,21 +86,33 @@ public class Calendar {
 	        }
 	        
 	    }
-	    // print whole year
-	    public static void main(String args[]) {
-	    	printCalendar(1, 2018);
-	    	printCalendar(2, 2018);
-	    	printCalendar(3, 2018);
-	    	printCalendar(4, 2018);
-	    	printCalendar(5, 2018);
-	    	printCalendar(6, 2018);
-	    	printCalendar(7, 2018);
-	    	printCalendar(8, 2018);
-	    	printCalendar(9, 2018);
-	    	printCalendar(10, 2018);
-	    	printCalendar(11, 2018);
-	    	printCalendar(12, 2018);
-	    	
-	    	
+	    
+	    public Calendar(ArrayList<Calendar> periodRecords) {
+	    	this.periodRecords = periodRecords;
 	    }
+	    
+	    private boolean isPeriod(int day, int month, int year) {
+	    	
+	    	Iterator itr = periodRecords.iterator();
+	    	
+	    	 
+	    }
+	    // print whole year
+//	    public static void main(String args[]) {
+//	    	printCalendar(1, 2018);
+//	    	printCalendar(2, 2018);
+//	    	printCalendar(3, 2018);
+//	    	printCalendar(4, 2018);
+//	    	printCalendar(5, 2018);
+//	    	printCalendar(6, 2018);
+//	    	printCalendar(7, 2018);
+//	    	printCalendar(8, 2018);
+//	    	printCalendar(9, 2018);
+//	    	printCalendar(10, 2018);
+//	    	printCalendar(11, 2018);
+//	    	printCalendar(12, 2018);
+//	    	
+//	    }
+	    
+	    
 	}

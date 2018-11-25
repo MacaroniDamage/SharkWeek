@@ -2,11 +2,15 @@ package sharkweek;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Sharkweek {
 	public static final String FILE_LOCATION = "periodData.csv";
+	
 	public static void main(String[] args) {
+		
+		
 		
 		int zyklus = 0;
 		
@@ -59,7 +63,7 @@ public class Sharkweek {
 		
 	}
 
-	private static Date parseDate(String dateString) {
+	public static Date parseDate(String dateString) {
 		  	Date date = null;
 		  	String pattern = "dd-MM-yyyy";
 		    SimpleDateFormat format = new SimpleDateFormat(pattern);
@@ -74,4 +78,11 @@ public class Sharkweek {
 		    System.out.println(format.format(date));
 		    return date;
 	  }
+	
+	private static void show() {
+		ReadDates file = new ReadDates();
+		ArrayList<String> Dates = file.fileContent();
+		
+		
+	}
 }
