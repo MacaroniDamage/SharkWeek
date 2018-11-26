@@ -84,7 +84,7 @@ public class PeriodCalendar {
 	        	}
 	        	if(prognosis == true)
 	        	{
-	        		if(is)
+	        		//if(isPeriod) {}
 	        	}
 	        	else {
 	        		System.out.printf(ANSI_GREEN + "%2d " + ANSI_RESET, i);
@@ -94,6 +94,7 @@ public class PeriodCalendar {
 	        }
 	        
 	    }
+
 	    
 	    public void printCalendar() {
 	    	Calendar newDate = Calendar.getInstance();
